@@ -6,7 +6,7 @@
 
 void read_slay(double** k, double* s, int size)
 {
-    printf("Введите коэффиценты СЛАУ:\n");
+    printf("Р’РІРµРґРёС‚Рµ РєРѕСЌС„С„РёС†РµРЅС‚С‹ РЎР›РђРЈ:\n");
 
     for (int i = 0; i < size; i++)
     {
@@ -17,7 +17,7 @@ void read_slay(double** k, double* s, int size)
         }
     }
 
-    printf("Введите столбец свободных членов:\n");
+    printf("Р’РІРµРґРёС‚Рµ СЃС‚РѕР»Р±РµС† СЃРІРѕР±РѕРґРЅС‹С… С‡Р»РµРЅРѕРІ:\n");
     for (int i = 0; i < size; i++)
     {
         printf("B[%d]: ", i + 1);
@@ -43,11 +43,11 @@ void cramer(double** k, double* s, int size)
 
     if (D == 0)
     {
-        printf("Определитель равен нулю, СЛАУ имеет бесконечное количество решений или решений нет.\n");
+        printf("РћРїСЂРµРґРµР»РёС‚РµР»СЊ СЂР°РІРµРЅ РЅСѓР»СЋ, РЎР›РђРЈ РёРјРµРµС‚ Р±РµСЃРєРѕРЅРµС‡РЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЂРµС€РµРЅРёР№ РёР»Рё СЂРµС€РµРЅРёР№ РЅРµС‚.\n");
         exit(1);
     }
 
-    printf("Определитель матрицы коэффициентов равен: %.3lf\n", D);
+    printf("РћРїСЂРµРґРµР»РёС‚РµР»СЊ РјР°С‚СЂРёС†С‹ РєРѕСЌС„С„РёС†РёРµРЅС‚РѕРІ СЂР°РІРµРЅ: %.3lf\n", D);
 
     double* answer = malloc(size * sizeof(double));
 
@@ -55,17 +55,17 @@ void cramer(double** k, double* s, int size)
     {
         double** km = copy_matrix(k, size, size);
         replace_col(km, size, i, s);
-        printf("Дельта %d:\n", i + 1);
+        printf("Р”РµР»СЊС‚Р° %d:\n", i + 1);
         print_matrix(km, size, size);
 
         double d = determinant(km, size);
-        printf("Определитель дельта %d = %.3lf\n", i + 1, d);
+        printf("РћРїСЂРµРґРµР»РёС‚РµР»СЊ РґРµР»СЊС‚Р° %d = %.3lf\n", i + 1, d);
         printf("\n");
 
         answer[i] = d / D;
     }
 
-    printf("Решение СЛАУ:\n");
+    printf("Р РµС€РµРЅРёРµ РЎР›РђРЈ:\n");
 
     for (int i = 0; i < size; i++)
     {
